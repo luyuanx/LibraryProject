@@ -104,7 +104,8 @@
                     }
                     ,where: {
 
-                        name: classinfo_name
+                        name: classinfo_name,
+
 
                     }
                 }, 'data');
@@ -116,8 +117,51 @@
             active[type] ? active[type].call(this) : '';
         });
 
+
         /**
-         * toolbar监听事件
+         * 定义获取选中的记录的id的函数
+         */
+        function getCheckId (data) {
+            var arr=new Array();
+            for(var i=0;i<data.length;i++){
+                arr.push(data[i].id);
+            }
+
+            return arr.join(",");
+        }
+
+        /**
+         *定义提交删除的功能函数
+         */
+        function deleteInfoByids(ids,index) { //需要窗口的索引参数
+            //向后台发送ajax请求
+            $.ajax({
+                url:"deleteType",
+                type:"POST",
+                data:{ids:ids},
+                success:function(result){
+                    if(result.code==0){//如果成功
+                        layer.msg('删除成功',{
+                            icon:6,
+                            time:1000
+                        },function(){
+                            parent.window.location.reload();
+                            // 关闭弹窗
+                            var iframeIndex = parent.layer.getFrameIndex(window.name);
+                            parent.layer.close(iframeIndex);
+                        })
+                    }else{
+                        layer.msg("类型删除失败了");
+                    }
+                }
+            })
+        }
+
+
+
+
+        /**
+         * toolbar工具栏监听事件
          */
         table.on('toolbar(currentTableFilter)', function (obj) {
             if (obj.event === 'add') {  // 监听添加操作
@@ -134,19 +178,29 @@
                     layer.full(index);
                 });
             } else if (obj.event === 'delete') {  // 监听删除操作
-                var checkStatus = table.checkStatus('currentTableId')
-                    , data = checkStatus.data;
-                layer.alert(JSON.stringify(data));
+                var checkStatus = table.checkStatus(obj.config.id);
+                var  data = checkStatus.data;
+                console.log(data);
+                if(data.length==0){
+                    layer.msg("请选择要删除的信息")
+                }
+                else{
+                    //    获取选中信息的集合
+                    var ids = getCheckId(data);
+                    layer.confirm('真的删除行么', function (index) {
+                        deleteInfoByids(ids,index);
+                        layer.close(index);
+                    });
+                }
+
+
             }
         });
 
-        //监听表格复选框选择
-        table.on('checkbox(currentTableFilter)', function (obj) {
-            console.log(obj)
-        });
 
-        table.on('tool(currentTableFilter)', function (obj) {
-            var data = obj.data;
+
+        table.on('tool(currentTableFilter)', function (obj) { //操作栏的监听
+            var data = obj.data;   //data的来源
             if (obj.event === 'edit') {
 
                 var index = layer.open({
@@ -155,8 +209,8 @@
                     shade: 0.2,
                     maxmin:true,
                     shadeClose: true,
-                    area: ['100%', '100%'],
-                    content: '../page/table/edit.html',
+                    area: ['60%', '60%'],
+                    content: '<%=basePath%>queryClassInfoById?id='+data.id,
                 });
                 $(window).on("resize", function () {
                     layer.full(index);
@@ -164,7 +218,7 @@
                 return false;
             } else if (obj.event === 'delete') {
                 layer.confirm('真的删除行么', function (index) {
-                    obj.del();
+                    deleteInfoByids(data.id,index);
                     layer.close(index);
                 });
             }

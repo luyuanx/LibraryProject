@@ -147,4 +147,14 @@
       author = #{author,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="queryNoticeAll" parameterType="com.it.po.Notice" resultType="com.it.po.Notice">
+    select * from notice
+  <where>
+    <if test="content!=null and content!=''">
+      and content LIKE '%${content}%'
+    </if>
+  </where>
+    ORDER by id DESC
+  </select>
 </mapper>

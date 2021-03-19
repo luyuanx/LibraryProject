@@ -9,6 +9,18 @@ public class ClassInfo implements Serializable {
 
 
 
+    public int getCounts() {
+        return counts;
+    }
+
+    public void setCounts(int counts) {
+        this.counts = counts;
+    }
+
+    private int counts;
+
+
+
     public ClassInfo() {
     }
 

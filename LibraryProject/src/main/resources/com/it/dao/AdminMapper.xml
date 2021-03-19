@@ -119,4 +119,23 @@
       type = #{type,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="queryAdminAll" parameterType="com.it.po.Admin" resultType="com.it.po.Admin">
+    select * from admin
+    <where>
+      <if test="username!=null">
+        and username like '%${username}%'
+      </if>
+      <if test="type!=null">
+        and type like '%${type}%'
+      </if>
+    </where>
+  </select>
+
+  <select id="queryUsernamePassword"  resultType="com.it.po.Admin">
+
+     select * from admin where username=#{username} and password=#{password}
+
+  </select>
+
 </mapper>

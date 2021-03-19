@@ -1,10 +1,10 @@
 {
   "homeInfo": {
     "title": "首页",
-    "href": "page/welcome-1.html?t=1"
+    "href": "welcome"
   },
   "logoInfo": {
-    "title": "图书馆管理",
+    "title": "图书管理系统",
     "image": "images/logo.png",
     "href": ""
   },
@@ -15,39 +15,45 @@
       "href": "",
       "target": "_self",
       "child": [
-          {
-              "title": "借阅管理",
-              "href": "page/table.html",
-              "icon": "fa fa-window-maximize",
-              "target": "_self"
-            },
+        {
+          "title": "借阅管理",
+          "href": "lendListIndex",
+          "icon": "fa fa-window-maximize",
+          "target": "_self"
+        },
         {
           "title": "图书管理",
-          "href": "page/table.html",
+          "href": "bookIndex",
           "icon": "fa fa-gears",
           "target": "_self"
         },
         {
           "title": "读者管理",
-          "href": "page/table.html",
+          "href": "readerIndex",
           "icon": "fa fa-file-text",
           "target": "_self"
         },
         {
-            "title": "类型管理",
-            "href": "page/table.html",
-            "icon": "fa fa-window-maximize",
-            "target": "_self"
-          },
-          {
-              "title": "公告管理",
-              "href": "page/table.html",
-              "icon": "fa fa-window-maximize",
-              "target": "_self"
-            }
+          "title": "类型管理",
+          "href": "typeIndex",
+          "icon": "fa fa-window-maximize",
+          "target": "_self"
+        },
+        {
+          "title": "公告管理",
+          "href": "noticeIndex",
+          "icon": "fa fa-window-maximize",
+          "target": "_self"
+        },
+        {
+          "title": "管理员管理",
+          "href": "adminIndex1",
+          "icon": "fa fa-window-maximize",
+          "target": "_self"
+        }
       ]
     },
-    
+
     {
       "title": "统计分析",
       "icon": "fa fa-slideshare",

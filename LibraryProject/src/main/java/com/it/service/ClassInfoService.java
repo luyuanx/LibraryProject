@@ -21,6 +21,13 @@ public interface ClassInfoService {
     //删除图书类型
     void deleteClassInfoByIds(List<Integer> ids);
 
+    //获取全部图书类型不分页版
+    List<ClassInfo> findAllTypeList(String name);
+
+    List<ClassInfo> queryCountsByType();
+
+
+
 
 
 }

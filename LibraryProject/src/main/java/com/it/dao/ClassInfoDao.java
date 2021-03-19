@@ -23,6 +23,9 @@ public interface ClassInfoDao {
     //删除图书类型
     void deleteClassInfoByIds(List<Integer> ids);
 
+    List<ClassInfo> queryCountsByType();
+
+
 
 
 

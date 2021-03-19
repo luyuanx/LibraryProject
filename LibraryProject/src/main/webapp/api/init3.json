@@ -4,7 +4,7 @@
     "href": "welcome"
   },
   "logoInfo": {
-    "title": "图书馆管理系统",
+    "title": "图书管理系统",
     "image": "images/logo.png",
     "href": ""
   },
@@ -15,12 +15,12 @@
       "href": "",
       "target": "_self",
       "child": [
-          {
-              "title": "借阅管理",
-              "href": "lendListIndex",
-              "icon": "fa fa-window-maximize",
-              "target": "_self"
-            },
+        {
+          "title": "借阅管理",
+          "href": "lendListIndex",
+          "icon": "fa fa-window-maximize",
+          "target": "_self"
+        },
         {
           "title": "图书管理",
           "href": "bookIndex",
@@ -34,17 +34,17 @@
           "target": "_self"
         },
         {
-            "title": "类型管理",
-            "href": "typeIndex",
-            "icon": "fa fa-window-maximize",
-            "target": "_self"
-          },
-          {
-              "title": "公告管理",
-              "href": "noticeIndex",
-              "icon": "fa fa-window-maximize",
-              "target": "_self"
-            },
+          "title": "类型管理",
+          "href": "typeIndex",
+          "icon": "fa fa-window-maximize",
+          "target": "_self"
+        },
+        {
+          "title": "公告管理",
+          "href": "noticeIndex",
+          "icon": "fa fa-window-maximize",
+          "target": "_self"
+        },
         {
           "title": "管理员管理",
           "href": "adminIndex",
@@ -53,14 +53,12 @@
         }
       ]
     },
-    
     {
       "title": "统计分析",
       "icon": "fa fa-slideshare",
       "href": "",
       "target": "_self",
       "child": [
-
         {
           "title": "统计分析",
           "href": "page/error.html",

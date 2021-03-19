@@ -12,7 +12,7 @@
                 and name like '%${name}%'
             </if>
         </where>
-        order by id desc 
+        order by id desc
     </select>
 
     <!--类型的添加-->
@@ -32,10 +32,21 @@
 
     <!--删除类型-->
     <delete id="deleteClassInfoByIds" parameterType="list">
-         delete from class_info where id in
-         <foreach collection="list" item="ids" open="(" separator="," close=")">
-             #{ids}
-         </foreach>
+        delete from class_info where id in
+        <foreach collection="list" item="ids" open="(" separator="," close=")">
+            #{ids}
+        </foreach>
     </delete>
+
+    <select id="queryCountsByType" resultType="com.it.po.ClassInfo">
+                SELECT
+            class_info.name,
+            COUNT( book_info.id ) as counts
+        FROM
+            class_info
+            LEFT JOIN book_info  ON class_info.id = book_info.type_id
+        GROUP BY
+            class_info.name
+    </select>
 
 </mapper>

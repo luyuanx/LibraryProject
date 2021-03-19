@@ -19,7 +19,7 @@ public class ClassInfoServiceImpl implements ClassInfoService {
     @Override
     public PageInfo<ClassInfo> queryClassInfoAll(String name, int page, int limit) {
 
-        //将分页参数传入，让mybatis处理分页信息
+        //将分页参数传入插件，让mybatis处理分页信息
         PageHelper.startPage(page, limit);
 
         //调用DAO层方法
@@ -49,6 +49,16 @@ public class ClassInfoServiceImpl implements ClassInfoService {
     @Override
     public void deleteClassInfoByIds(List<Integer> ids) {
         classInfoDao.deleteClassInfoByIds(ids);
+    }
+
+    @Override
+    public List<ClassInfo> findAllTypeList(String name) {
+        return classInfoDao.queryClassInfoAll(name);
+    }
+
+    @Override
+    public List<ClassInfo> queryCountsByType() {
+        return classInfoDao.queryCountsByType();
     }
 
 

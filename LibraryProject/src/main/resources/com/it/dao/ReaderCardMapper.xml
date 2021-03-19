@@ -225,4 +225,28 @@
       cardnumber = #{cardnumber,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!--查询全部读者卡-->
+  <select id="queryReaderCardAll" parameterType="com.it.po.ReaderCard" resultType="com.it.po.ReaderCard">
+    select * from  reader_card
+    <where>
+      <if test="username!=null">
+          and username like '%${username}%'
+      </if>
+      <if test="cardnumber!=null">
+          and cardnumber like '%${cardnumber}%'
+      </if>
+      <if test="tel!=null and tel!=''">
+        and tel like '%${tel}%'
+      </if>
+      <if test="name!=null and name!=''">
+        and name like '%${name}%'
+      </if>
+    </where>
+     order by id desc
+  </select>
+
+  <select id="queryUsernamePassword" resultType="com.it.po.ReaderCard">
+    select * from reader_card where username=#{username} AND password = #{password}
+  </select>
 </mapper>

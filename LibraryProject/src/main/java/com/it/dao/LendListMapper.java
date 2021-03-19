@@ -1,6 +1,10 @@
 package com.it.dao;
 
 import com.it.po.LendList;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
 
 public interface LendListMapper {
     /**
@@ -50,4 +54,34 @@ public interface LendListMapper {
      * @mbggenerated Tue Dec 08 15:59:31 CST 2020
      */
     int updateByPrimaryKey(LendList record);
+
+
+    List<LendList> queryLendListAll(LendList lendList);
+
+
+
+    /**
+     * 查询当前用户已经借了多少本信息
+     */
+    int queryLendNumberById(Integer id);
+
+
+    /**
+     * 删除
+     */
+    int deleteLendListById(Integer id);
+
+
+    /**
+     * 还书
+     */
+    int updateLendListSubmit(LendList lendList);
+
+
+    /**
+     * 查询时间线
+     */
+    List<LendList> queryLookBookList(@Param("rid") Integer rid, @Param("bid") Integer bid);
+
+
 }

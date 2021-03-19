@@ -1,6 +1,9 @@
 package com.it.dao;
 
 import com.it.po.Admin;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface AdminMapper {
     /**
@@ -50,4 +53,11 @@ public interface AdminMapper {
      * @mbggenerated Tue Dec 08 15:59:31 CST 2020
      */
     int updateByPrimaryKey(Admin record);
+
+
+    List<Admin> queryAdminAll(Admin admin);
+
+    Admin queryUsernamePassword(@Param("username") String username, @Param("password") String password);
+
+
 }

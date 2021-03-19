@@ -3,6 +3,7 @@ package com.it.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.it.po.ClassInfo;
+import com.it.po.Notice;
 import com.it.service.ClassInfoService;
 import com.it.util.util.R;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,5 +96,19 @@ public class TypeController {
         model.addAttribute("info", info);
         return "type/updateType";
     }
+
+    /**
+     * 获取图书类型列表
+     */
+    @ResponseBody
+    @RequestMapping("/findAllList")
+    public List<ClassInfo> findAllTypeList(String name){
+
+        return classInfoService.findAllTypeList(name) ;
+    }
+
+
+
+
 
 }

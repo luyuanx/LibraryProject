@@ -30,7 +30,21 @@
     <mvc:resources mapping="/api/**" location="/api/"></mvc:resources>
 
 
+    <!--配置拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/login"/>
+            <mvc:exclude-mapping path="/loginCheck"/>
+            <mvc:exclude-mapping path="/captcha/**"/>
+
+
+            <bean class="com.it.intercepter.LoginIntercepter"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
     <!--开启SpringMVC注解的支持-->
     <mvc:annotation-driven/>
+
+
 
 </beans>

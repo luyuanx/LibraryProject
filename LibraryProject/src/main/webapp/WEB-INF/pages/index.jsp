@@ -3,9 +3,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%
-    String path=request.getContextPath();
+    String path = request.getContextPath();
 //    获取项目完全路径
-    String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 <html>
 <head>
@@ -65,19 +65,21 @@
                     <a href="javascript:;" data-check-screen="full"><i class="fa fa-arrows-alt"></i></a>
                 </li>
                 <li class="layui-nav-item layuimini-setting">
-                    <a href="javascript:;">admin</a>
+                    <a href="javascript:;">${sessionScope.User.username}</a>
                     <dl class="layui-nav-child">
                         <dd>
-                            <a href="javascript:;" layuimini-content-href="page/user-setting.html" data-title="基本资料" data-icon="fa fa-gears">基本资料</a>
+                            <a href="javascript:;" layuimini-content-href="page/user-setting.html" data-title="基本资料"
+                               data-icon="fa fa-gears">基本资料</a>
                         </dd>
                         <dd>
-                            <a href="javascript:;" layuimini-content-href="page/user-password.html" data-title="修改密码" data-icon="fa fa-gears">修改密码</a>
+                            <a href="javascript:;" layuimini-content-href="page/user-password.html" data-title="修改密码"
+                               data-icon="fa fa-gears">修改密码</a>
                         </dd>
                         <dd>
                             <hr>
                         </dd>
                         <dd>
-                            <a href="javascript:;" class="login-out">退出登录</a>
+                            <a href="<%=basePath%>logout" class="login-out">退出登录</a>
                         </dd>
                     </dl>
                 </li>
@@ -135,22 +137,38 @@
 <script src="<%=basePath%>lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script src="<%=basePath%>js/lay-config.js?v=2.0.0" charset="utf-8"></script>
 <script>
-    layui.use(['jquery', 'layer', 'miniAdmin','miniTongji'], function () {
+    layui.use(['jquery', 'layer', 'miniAdmin', 'miniTongji'], function () {
         var $ = layui.jquery,
             layer = layui.layer,
             miniAdmin = layui.miniAdmin,
             miniTongji = layui.miniTongji;
 
         var options = {
-            iniUrl: "api/init3.json",    // 初始化接口
+            <c:choose>
+            <c:when test="${sessionScope.type.equals('reader')}">
+            iniUrl: "api/init2.json", // 初始化接口
+            </c:when>
+            <c:otherwise>
+            <c:choose>
+            <c:when test="${sessionScope.User.type!=1}">
+            iniUrl: "api/init.json", // 初始化接口
+            </c:when>
+            <c:otherwise>
+            iniUrl: "api/init3.json", // 初始化接口
+            </c:otherwise>
+
+            </c:choose>
+            </c:otherwise>
+            </c:choose>
+
             clearUrl: "api/clear.json", // 缓存清理接口
-            urlHashLocation: true,      // 是否打开hash定位
-            bgColorDefault: false,      // 主题默认配置
-            multiModule: true,          // 是否开启多模块
-            menuChildOpen: false,       // 是否默认展开菜单
-            loadingTime: 0,             // 初始化加载时间
-            pageAnim: true,             // iframe窗口动画
-            maxTabNum: 20,              // 最大的tab打开数量
+            urlHashLocation: true, // 是否打开hash定位
+            bgColorDefault: false, // 主题默认配置
+            multiModule: true, // 是否开启多模块
+            menuChildOpen: false, // 是否默认展开菜单
+            loadingTime: 0, // 初始化加载时间
+            pageAnim: true, // iframe窗口动画
+            maxTabNum: 20, // 最大的tab打开数量
         };
         miniAdmin.render(options);
 

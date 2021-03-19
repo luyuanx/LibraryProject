@@ -235,4 +235,31 @@
       status = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!--结果集映射-->
+  <resultMap id="queryAllresultMap" extends="BaseResultMap"  type="com.it.po.BookInfo">
+    <association property="classInfo" javaType="com.it.po.ClassInfo">
+      <id column="id" property="id"></id>
+      <result column="typename" property="name"></result>
+    </association>
+
+  </resultMap>
+  <!--多表映射查询-->
+  <select id="queryBookInfoAll"  parameterType="com.it.po.BookInfo" resultMap="queryAllresultMap" >
+    SELECT book.*,type.name AS typename
+    FROM book_info book ,class_info TYPE WHERE type.id=book.type_id
+  
+    <if test="name!=null">
+      and book.name like '%${name}%'
+    </if>
+    <if test="isbn!=null">
+      and book.isbn like '%${isbn}%'
+    </if>
+    <if test="typeId!=null">
+      and type_id=#{typeId}
+    </if>
+
+  </select>
+
+
 </mapper>

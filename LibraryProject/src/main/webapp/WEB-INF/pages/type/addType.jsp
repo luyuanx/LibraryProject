@@ -35,7 +35,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">图书类型名</label>
         <div class="layui-input-block">
-            <input type="text" name="name" lay-verify="required" lay-reqtext="图书类型名不能为空" placeholder="请输入用户名" value=""
+            <input type="text" name="name" lay-verify="required" lay-reqtext="图书类型名不能为空" placeholder="请输入图书名称" value=""
                    class="layui-input">
             <tip>填写图书类型的名称。</tip>
         </div>

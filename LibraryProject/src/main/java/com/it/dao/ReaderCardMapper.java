@@ -1,6 +1,9 @@
 package com.it.dao;
 
 import com.it.po.ReaderCard;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface ReaderCardMapper {
     /**
@@ -50,4 +53,13 @@ public interface ReaderCardMapper {
      * @mbggenerated Tue Dec 08 15:59:31 CST 2020
      */
     int updateByPrimaryKey(ReaderCard record);
+
+    /**
+     * 查询全部图书列表
+     */
+    List<ReaderCard> queryReaderCardAll(ReaderCard readerCard);
+
+
+    ReaderCard queryUsernamePassword(@Param("username") String username, @Param("password") String password);
+
 }

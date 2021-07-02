@@ -13,6 +13,6 @@ public class Constants {
     public final static int STATUS_0 = 0;   // 可用状态
     public final static int STATUS_1 = 1;   // 禁用状态
 
-    public final static String CACHE_NAME = "KACache";
+    public final static String CACHE_NAME = "KACache";  //
 
 }
